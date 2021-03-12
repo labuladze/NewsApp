@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model IEnumerable<NewsApp.Models.News>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by Headers..">
+            <table class="table table-image" id="myTable">
+                <thead>
+                    <tr>
+                        <th scope="col">Image</th>
+                        <th scope="col">Article Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="w-25 ">
+                                <img src=@item.Url class="img-fluid img-thumbnail" style="height: 150px">
+                            </td>
+                            <td>@item.Header  </td>
+                            <td><a asp-action="Detail" asp-route-id="@item.Id" class="btn btn-primary">Details</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td ) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>

@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = "Detail";
+}
+@model NewsApp.Models.News
+<h1>Detail</h1>
+
+<div class="card w-100 text-center" >
+    <img src=@Model.Url class="card-img-top">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Header</h5>
+        <p class="card-text">@Model.Desctiption</p>
+        <p class="card-text">@Model.Mobile</p>
+        <a asp-action="Index" class="btn btn-primary">Go Back</a>
+    </div>
+</div>
+
